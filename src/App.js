@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { Cards } from "./components/Cards";
+import { Charts } from "./components/Charts";
+import { CountryPicker } from "./components/CountryPicker";
+import { fetchData } from "./api"
+import { useEffect, useState } from "react";
 
 function App() {
+  const [data, setData] = useState({})
+  useEffect(() => {
+      fetchData()
+    .then(response => {
+      console.log(response);
+      setData(response);
+    })
+  },[])
+    console.log(data)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="grid grid-cols-1 gap-3  w-screen">
+      <h1 className="m-auto my-3 font-bold">COVID-19 UPDATE</h1>
+      <Cards data={data}/>
+      <Charts />
+      <CountryPicker />
+    
     </div>
   );
 }
 
 export default App;
+
+
