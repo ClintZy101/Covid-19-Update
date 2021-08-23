@@ -1,0 +1,46 @@
+import React from 'react'
+import CountUp from 'react-countup'
+
+export function GlobalCards({ globalData }) {
+    if (!globalData.confirmed) {
+        return null
+    }
+    return (
+        <div className=" flex flex-col text-center space-x-4 m-auto ">
+            <h1 className="font-bold">Global Update</h1>
+            <div className="flex m-auto">
+                <div className="m-3 w-40 border shadow-md rounded-sm text-center  ">
+                    <h1 className="p-3">Confirmed Cases</h1>
+                    <CountUp
+                        start={0}
+                        end={globalData.confirmed.value}
+                        duration={3}
+                        separator="," />
+                    <p>{new Date(globalData.lastUpdate).toDateString()}</p>
+                    <div className="bg-blue-600 h-3 mt-2"></div>
+                </div>
+                <div className="m-3  w-40 border shadow-md rounded-sm text-center">
+                    <h1 className="p-3">Recovered</h1>
+                    <CountUp
+                        start={0}
+                        end={globalData.recovered.value}
+                        duration={3}
+                        separator="," />
+                    <p>{new Date(globalData.lastUpdate).toDateString()}</p>
+                    <div className="bg-green-600 h-3 mt-2"></div>
+                </div>
+                <div className="m-3  w-40 border shadow-md rounded-sm text-center">
+                    <h1 className="p-3">Deaths</h1>
+                    <CountUp
+                        start={0}
+                        end={globalData.deaths.value}
+                        duration={3}
+                        separator="," />
+                    <p>{new Date(globalData.lastUpdate).toDateString()}</p>
+                    <div className="bg-red-600 h-3 mt-2"></div>
+                </div>
+            </div>
+
+        </div>
+    )
+}

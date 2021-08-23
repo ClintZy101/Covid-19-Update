@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { fetchDailyData } from '../api'
-import { Line, Bar } from 'react-chartjs-2'
+import { Line } from 'react-chartjs-2'
 
-export const Charts = () => {
+export const LineChart = () => {
     const [dailyData, setDailyData] = useState([])
     useEffect(() => {
         const fetchApi = async () => {
@@ -31,13 +31,13 @@ export const Charts = () => {
                     }]
                 }}
             /> : null
-
-    )
+    );
 
 
     return (
-        <div className="mt-5 mx-3">
-            {lineChart}
+        <div className="mt-5 mx-3 text-center my-3">
+            <h1 className="">Global Chart</h1>
+            {dailyData && lineChart}
         </div>
     )
 }
